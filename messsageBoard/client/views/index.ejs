@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Message Board</title>
+  </head>
+  <body>
+    <h1> Welcome to the Message board! </h1>
+    <h4>Add a message!</h4>
+    <p>
+      <form method="post" action="/create_message">
+    </p>
+      <p>
+        Name: <input type="text" name="name" />
+      </p>
+      <p>
+        Message: <input type="text" name="message" />
+      </p>
+        <button>submit</button>
+    </form>
+    <% for (var index in messages){ %>
+      <p>
+        Name: <%= messages[index].name %>
+      </p>
+      <p>
+        Message: <%= messages[index].message %>
+    </p>
+    <h4>Comments!</h4>
+    <% var comment_array = messages[index]._comments %>
+    <!--  each messages of array, is the comment -->
+    <% for( var comment_idx = 0; comment_idx < messages[index]._comments.length; comment_idx++ ) { %>
+      <!-- //for each index in comment -->
+    <div class="comments">
+      <p>
+        Name: <%= comment_array[comment_inx].name %>
+      </p>
+      <p>
+        Comments: <%= comment_array[comment_inx].comment %>
+      </p>
+    </div>
+    <% } %>
+    <h6>Leave a comment</h6>
+    <form class="comment_form action='/create_comment/<%= messages[index]._id %>" method=post>
+  <!-- //id of our message --> -->
+      <p>
+        Name: <input type="text" name="name" />
+      </p>
+      <p>
+        Comment: <input type="text" name="comment" />
+      </p>
+      <button>Submit</button>
+    </form>
+    <hr>
+      <% } %>
+  </body>
+</html>
